@@ -1,0 +1,14 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <!-- Custom margins and font sizes-->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="activity_horizontal_margin_small">4dp</dimen>
+    <dimen name="activity_vertical_margin_small">2dp</dimen>
+    <dimen name="activity_font_big">22sp</dimen>
+    <dimen name="activity_font_medium">16sp</dimen>
+    <dimen name="activity_font_small">12sp</dimen>
+    <dimen name="separator_height">2sp</dimen>
+
+</resources>
