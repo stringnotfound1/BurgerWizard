@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.LinearLayout;
 
 import com.burgerwizard.alex.burgerwizard.CustomElements.CustomIngredientSelector;
+import com.burgerwizard.alex.burgerwizard.Functionality.Ingredient;
 
 public class ActivityBurgerWizard extends AppCompatActivity {
 
@@ -28,9 +29,13 @@ public class ActivityBurgerWizard extends AppCompatActivity {
         CustomIngredientSelector selector2 = new CustomIngredientSelector(this);
         CustomIngredientSelector selector3 = new CustomIngredientSelector(this);
 
-        selector1.setIngredients(new Drawable[]{getDrawable(R.color.colorAccent), getDrawable(R.color.colorPrimary), getDrawable(R.color.colorPrimaryDark)});
-        selector2.setIngredients(new Drawable[]{getDrawable(R.color.red), getDrawable(R.color.green), getDrawable(R.color.blue)});
-        selector3.setIngredients(new Drawable[]{getDrawable(R.color.colorAccent), getDrawable(R.color.colorPrimary), getDrawable(R.color.colorPrimaryDark)});
+        Ingredient red = new Ingredient("Red",getDrawable(R.color.red),1.05f);
+        Ingredient green = new Ingredient("Green",getDrawable(R.color.green),1.05f);
+        Ingredient blue = new Ingredient("Blue",getDrawable(R.color.blue),1.05f);
+
+        selector1.setIngredients(new Ingredient[]{red, green, blue});
+        selector2.setIngredients(new Ingredient[]{red, green, blue});
+        selector3.setIngredients(new Ingredient[]{red, green, blue});
 
         llIngredients.addView(selector1);
         llIngredients.addView(selector2);

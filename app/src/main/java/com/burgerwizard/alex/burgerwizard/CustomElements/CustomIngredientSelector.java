@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.burgerwizard.alex.burgerwizard.Functionality.Ingredient;
 import com.burgerwizard.alex.burgerwizard.R;
 
 import java.lang.reflect.Array;
@@ -20,7 +21,7 @@ public class CustomIngredientSelector extends LinearLayout{
     private ImageView ivIngredient;
     private ImageView ivButtonRight;
 
-    private Drawable[] ingredients;
+    private Ingredient[] ingredients;
     private int currentIndex = 0;
 
 
@@ -33,8 +34,9 @@ public class CustomIngredientSelector extends LinearLayout{
         this.ivIngredient.setImageDrawable(drawable);
     }
 
-    public void setIngredients(Drawable[] ingredients){
+    public void setIngredients(Ingredient[] ingredients){
         this.ingredients = ingredients;
+        setIngredientDrawable(ingredients[0].getDrawable());
     }
 
     private void init(){
@@ -64,7 +66,7 @@ public class CustomIngredientSelector extends LinearLayout{
             currentIndex = this.ingredients.length-1;
         if(currentIndex > this.ingredients.length-1)
             currentIndex = 0;
-        setIngredientDrawable(this.ingredients[currentIndex]);
+        setIngredientDrawable(this.ingredients[currentIndex].getDrawable());
 
     }
 
