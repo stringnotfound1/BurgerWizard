@@ -2,6 +2,8 @@ package com.burgerwizard.alex.burgerwizard.Functionality;
 
 import android.graphics.drawable.Drawable;
 
+import java.io.Serializable;
+
 import lombok.Data;
 
 /**
@@ -9,15 +11,15 @@ import lombok.Data;
  */
 
 @Data
-public class Ingredient {
+public class Ingredient implements Serializable{
 
     private String identifier;
-    private Drawable drawable;
+    private int drawableIndentfier;
     private float price;
 
-    public Ingredient(String identifier, Drawable drawable, float price) {
+    public Ingredient(String identifier, int drawableIndentfier, float price) {
         this.identifier = identifier;
-        this.drawable = drawable;
+        this.drawableIndentfier = drawableIndentfier;
         this.price = price;
     }
 }

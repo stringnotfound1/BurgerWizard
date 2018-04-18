@@ -7,4 +7,5 @@ package com.burgerwizard.alex.burgerwizard.Functionality;
 public class Static {
 
     public static final String USER_EXTRA = "USER_EXTRA";
+    public static final String INGREDIENT_LIST_EXTRA = "INGREDIENT_LIST_EXTRA";
 }

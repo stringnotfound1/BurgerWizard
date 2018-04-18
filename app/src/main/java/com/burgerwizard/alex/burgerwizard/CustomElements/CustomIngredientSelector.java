@@ -17,16 +17,19 @@ import java.lang.reflect.Array;
 
 public class CustomIngredientSelector extends LinearLayout{
 
+    Context context;
+
     private ImageView ivButtonLeft;
     private ImageView ivIngredient;
     private ImageView ivButtonRight;
 
     private Ingredient[] ingredients;
+    private Ingredient currentIngredient;
     private int currentIndex = 0;
-
 
     public CustomIngredientSelector(Context context) {
         super(context);
+        this.context = context;
         init();
     }
 
@@ -36,7 +39,8 @@ public class CustomIngredientSelector extends LinearLayout{
 
     public void setIngredients(Ingredient[] ingredients){
         this.ingredients = ingredients;
-        setIngredientDrawable(ingredients[0].getDrawable());
+        setIngredientDrawable(context.getDrawable(ingredients[0].getDrawableIndentfier()));
+        currentIngredient = ingredients[0];
     }
 
     private void init(){
@@ -49,6 +53,10 @@ public class CustomIngredientSelector extends LinearLayout{
         ivButtonLeft.setOnClickListener(this::swipeLeft);
         ivButtonRight.setOnClickListener(this::swipeRight);
 
+    }
+
+    public Ingredient getCurrentIngredient() {
+        return currentIngredient;
     }
 
     private void swipeRight(View view) {
@@ -66,7 +74,8 @@ public class CustomIngredientSelector extends LinearLayout{
             currentIndex = this.ingredients.length-1;
         if(currentIndex > this.ingredients.length-1)
             currentIndex = 0;
-        setIngredientDrawable(this.ingredients[currentIndex].getDrawable());
+        currentIngredient = ingredients[currentIndex];
+        setIngredientDrawable(context.getDrawable(this.ingredients[currentIndex].getDrawableIndentfier()));
 
     }
 
