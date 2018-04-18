@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Burger Wizard</string>
     <string name="burgerwizard">Burger Wizard</string>
+    <string name="next">Next</string>
+    <string name="ok">Ok</string>
+    <string name="address">Address</string>
+    <string name="ccn">Credit Card Number</string>
+    <string name="telnr">Telephone Number</string>
+    <string name="name">Name</string>
 </resources>

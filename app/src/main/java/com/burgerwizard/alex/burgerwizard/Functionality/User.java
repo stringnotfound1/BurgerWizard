@@ -1,5 +1,7 @@
 package com.burgerwizard.alex.burgerwizard.Functionality;
 
+import java.io.Serializable;
+
 import lombok.Data;
 
 /**
@@ -7,14 +9,14 @@ import lombok.Data;
  */
 
 @Data
-public class Customer {
+public class User implements Serializable{
 
     private String name;
     private String address;
-    private int ccn;
-    private int telephoneNumber;
+    private String ccn;
+    private String telephoneNumber;
 
-    public Customer(String name, String address, int ccn, int telephoneNumber) {
+    public User(String name, String address, String ccn, String telephoneNumber) {
         this.name = name;
         this.address = address;
         this.ccn = ccn;

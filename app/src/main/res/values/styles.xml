@@ -19,4 +19,24 @@
         <item name="android:layout_margin">@dimen/activity_vertical_margin_small</item>
     </style>
 
+    <style name="TextViewButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/fab_margin</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:background">@color/grey</item>
+    </style>
+
+    <style name="CustomUserInput">
+        <item name="android:width">36dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>,
+        <item name="android:layout_alignParentEnd">true</item>
+        <item name="android:textSize">@dimen/activity_font_medium</item>
+    </style>
+
+    <style name="SplashTheme" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/splash</item>
+    </style>
+
 </resources>

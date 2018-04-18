@@ -6,4 +6,81 @@
     android:layout_height="match_parent"
     tools:context="com.burgerwizard.alex.burgerwizard.ActivityUserData">
 
+
+    <TextView
+        android:id="@+id/activity_user_data_tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/activity_user_data_et_user"
+        android:layout_alignBottom="@+id/activity_user_data_et_user"
+        android:text="@string/name"
+        android:textSize="@dimen/activity_font_medium" />
+
+    <EditText
+        style="@style/CustomUserInput"
+        android:id="@+id/activity_user_data_et_user"
+        android:layout_toEndOf="@+id/activity_user_data_tv_name"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/activity_user_data_tv_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/activity_user_data_et_address"
+        android:layout_alignBottom="@+id/activity_user_data_et_address"
+        android:layout_below="@id/activity_user_data_et_user"
+        android:text="@string/address"
+        android:textSize="@dimen/activity_font_medium" />
+
+    <EditText
+        style="@style/CustomUserInput"
+        android:id="@+id/activity_user_data_et_address"
+        android:layout_below="@id/activity_user_data_et_user"
+        android:layout_toEndOf="@+id/activity_user_data_tv_address"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/activity_user_data_tv_ccn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/activity_user_data_et_ccn"
+        android:layout_alignBottom="@+id/activity_user_data_et_ccn"
+        android:layout_below="@id/activity_user_data_et_address"
+        android:text="@string/ccn"
+        android:textSize="@dimen/activity_font_medium" />
+
+    <EditText
+        style="@style/CustomUserInput"
+        android:id="@+id/activity_user_data_et_ccn"
+        android:layout_below="@id/activity_user_data_et_address"
+        android:layout_toEndOf="@+id/activity_user_data_tv_ccn"
+        android:text="" />
+
+
+    <TextView
+        android:id="@+id/activity_user_data_tv_telnr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/activity_user_data_et_telnr"
+        android:layout_alignBottom="@+id/activity_user_data_et_telnr"
+        android:layout_below="@id/activity_user_data_et_ccn"
+        android:text="@string/telnr"
+        android:textSize="@dimen/activity_font_medium" />
+
+    <EditText
+        style="@style/CustomUserInput"
+        android:id="@+id/activity_user_data_et_telnr"
+        android:inputType="phone"
+        android:layout_below="@id/activity_user_data_et_ccn"
+        android:layout_toEndOf="@+id/activity_user_data_tv_telnr"
+        android:text="" />
+
+
+
+
+    <TextView
+        android:id="@+id/activity_user_data_tv_next"
+        style="@style/TextViewButton"
+        android:layout_alignParentBottom="true"
+        android:text="@string/next" />
 </RelativeLayout>
