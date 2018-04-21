@@ -4,26 +4,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/activity_horizontal_margin">
+    android:layout_margin="@dimen/activity_horizontal_margin"
+    android:weightSum="100">
 
     <ImageView
         android:id="@+id/custom_ingredient_selector_arrow_left"
         style="@style/CustomButton"
-        app:srcCompat="@android:drawable/arrow_down_float"
-/>
+        android:layout_weight="10"
+        app:srcCompat="@android:drawable/arrow_down_float" />
 
     <ImageView
         android:id="@+id/custom_ingredient_selector_ingredient"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="2"
-        app:srcCompat="@color/colorAccent"
+        android:layout_marginLeft="@dimen/activity_vertical_margin"
         android:layout_marginRight="@dimen/activity_vertical_margin"
-        android:layout_marginLeft="@dimen/activity_vertical_margin"/>
+        android:layout_weight="80"
+        app:srcCompat="@color/colorAccent" />
 
     <ImageView
         android:id="@+id/custom_ingredient_selector_arrow_right"
         style="@style/CustomButton"
+        android:layout_weight="10"
         app:srcCompat="@android:drawable/arrow_up_float" />
 
 

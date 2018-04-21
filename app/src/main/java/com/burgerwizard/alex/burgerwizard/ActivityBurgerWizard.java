@@ -35,26 +35,66 @@ public class ActivityBurgerWizard extends AppCompatActivity {
 
     private void initializeIngredients(){
 
-        CustomIngredientSelector selector1 = new CustomIngredientSelector(this);
-        CustomIngredientSelector selector2 = new CustomIngredientSelector(this);
-        CustomIngredientSelector selector3 = new CustomIngredientSelector(this);
+        CustomIngredientSelector selectorBreadTop = new CustomIngredientSelector(this);
+        CustomIngredientSelector selectorMeat = new CustomIngredientSelector(this);
+        CustomIngredientSelector selectorSauce = new CustomIngredientSelector(this);
+        CustomIngredientSelector selectorExtra1 = new CustomIngredientSelector(this);
+        CustomIngredientSelector selectorExtra2 = new CustomIngredientSelector(this);
+        CustomIngredientSelector selectorBreadBot = new CustomIngredientSelector(this);
 
         customIngredientSelectors = new ArrayList<>();
-        customIngredientSelectors.add(selector1);
-        customIngredientSelectors.add(selector2);
-        customIngredientSelectors.add(selector3);
+        customIngredientSelectors.add(selectorBreadTop);
+        customIngredientSelectors.add(selectorExtra1);
+        customIngredientSelectors.add(selectorSauce);
+        customIngredientSelectors.add(selectorMeat);
+        customIngredientSelectors.add(selectorExtra2);
+        customIngredientSelectors.add(selectorBreadBot);
 
-        Ingredient red = new Ingredient("Red",R.color.red,1.05f);
-        Ingredient green = new Ingredient("Green",R.color.green,1.05f);
-        Ingredient blue = new Ingredient("Blue",R.color.blue,1.05f);
+        /* bread start */
+        Ingredient brot_top = new Ingredient("Brot", R.drawable.brot_top, 1f);
+        Ingredient brot_bot = new Ingredient("Brot", R.drawable.brot_bot, 1f);
 
-        selector1.setIngredients(new Ingredient[]{red, green, blue});
-        selector2.setIngredients(new Ingredient[]{red, green, blue});
-        selector3.setIngredients(new Ingredient[]{red, green, blue});
+        Ingredient brot_top_chi = new Ingredient("Brot Chia", R.drawable.brot_top_chi, 1f);
+        Ingredient brot_bot_chi = new Ingredient("Brot Chia", R.drawable.brot_bot_chi, 1f);
 
-        llIngredients.addView(selector1);
-        llIngredients.addView(selector2);
-        llIngredients.addView(selector3);
+        Ingredient brot_top_laugen = new Ingredient("Brot Lauge", R.drawable.brot_top_laugen, 1f);
+        Ingredient brot_bot_laugen = new Ingredient("Brot Lauge", R.drawable.brot_bot_laugen, 1f);
+        /* bread end */
+
+        /* meat start */
+        Ingredient rind = new Ingredient("Rind", R.drawable.fleisch, 1f);
+        Ingredient fisch = new Ingredient("Fisch", R.drawable.fisch, 1f);
+        Ingredient huhn = new Ingredient("Huhn", R.drawable.huhn, 1f);
+
+        /* extras start */
+        Ingredient bacon = new Ingredient("Bacon", R.drawable.bacon, 1f);
+        Ingredient kaese = new Ingredient("Käse", R.drawable.kaese, 1f);
+        Ingredient salat = new Ingredient("Salat", R.drawable.salat, 1f);
+        Ingredient rucola = new Ingredient("Rucola", R.drawable.rucola, 1f);
+        Ingredient tomate = new Ingredient("Tomate", R.drawable.tomate, 1f);
+        Ingredient gurke = new Ingredient("Gurke", R.drawable.gurke, 1f);
+        /* extras end */
+
+        /* sauce start*/
+        Ingredient bbq = new Ingredient("BBQ", R.drawable.bbq, 1f);
+        Ingredient kaesesauce = new Ingredient("Käsesauce", R.drawable.kaesesau, 1f);
+        Ingredient salsa = new Ingredient("Salsa", R.drawable.salsa, 1f);
+        Ingredient sauerrahm = new Ingredient("Sauerrahm", R.drawable.sauerrahm, 1f);
+        /* sauce end */
+
+        selectorBreadTop.setIngredients(new Ingredient[]{brot_top, brot_top_chi, brot_top_laugen});
+        selectorExtra1.setIngredients(new Ingredient[]{bacon, kaese, salat, rucola, tomate, gurke});
+        selectorSauce.setIngredients(new Ingredient[]{salsa, bbq, kaesesauce, sauerrahm});
+        selectorMeat.setIngredients(new Ingredient[]{rind, huhn, fisch});
+        selectorExtra2.setIngredients(new Ingredient[]{bacon, kaese, salat, rucola, tomate, gurke});
+        selectorBreadBot.setIngredients(new Ingredient[]{brot_bot, brot_bot_chi, brot_bot_laugen});
+
+        llIngredients.addView(selectorBreadTop);
+        llIngredients.addView(selectorExtra1);
+        llIngredients.addView(selectorSauce);
+        llIngredients.addView(selectorExtra2);
+        llIngredients.addView(selectorMeat);
+        llIngredients.addView(selectorBreadBot);
 
         findViewById(R.id.activity_burger_wizard_tv_next).setOnClickListener(this::checkOut);
 
