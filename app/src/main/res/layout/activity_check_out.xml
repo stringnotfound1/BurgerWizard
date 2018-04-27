@@ -7,8 +7,33 @@
     tools:context="com.burgerwizard.alex.burgerwizard.ActivityCheckOut">
 
     <TextView
-        android:id="@+id/activity_check_out_tv"
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:text="@string/checkout"
+        android:textSize="@dimen/activity_font_big" />
+
+    <TextView
+        android:id="@+id/activity_check_out_tv_ingredients"
+        style="@style/TextViewCheckOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView2"
+        android:layout_marginStart="14dp"
+        android:text="TextView"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/activity_check_out_tv_price"
+        style="@style/TextViewCheckOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/activity_check_out_tv_ingredients"
+        android:text="TextView"
+        android:textStyle="bold" />
 </RelativeLayout>

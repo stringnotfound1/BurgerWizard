@@ -9,10 +9,12 @@ import com.burgerwizard.alex.burgerwizard.Functionality.Static;
 import com.burgerwizard.alex.burgerwizard.Functionality.User;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class ActivityCheckOut extends AppCompatActivity {
 
     private TextView tvResult;
+    private TextView tvPrice;
     private User user;
     private ArrayList<Ingredient> ingredients;
 
@@ -21,12 +23,20 @@ public class ActivityCheckOut extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_out);
 
-        tvResult = findViewById(R.id.activity_check_out_tv);
+        tvResult = findViewById(R.id.activity_check_out_tv_ingredients);
+        tvPrice = findViewById(R.id.activity_check_out_tv_price);
 
         user = (User) getIntent().getSerializableExtra(Static.USER_EXTRA);
         ingredients = (ArrayList<Ingredient>) getIntent().getSerializableExtra(Static.INGREDIENT_LIST_EXTRA);
 
-        String result = user.toString()+"\n"+ingredients.toString();
+        String result = "";
+        float price = 0.0f;
+        for (Ingredient ingredient : ingredients){
+            result = result +  String.format(Locale.GERMAN,ingredient.getIdentifier() + " " + "\t\t\t" + "%.2f" +"€" + "\n", ingredient.getPrice());
+            price = price + ingredient.getPrice();
+        }
         tvResult.setText(result);
+        String priceString = String.format(Locale.GERMAN,"Preis: " + "\t\t" + "%.2f" + "€", price);
+        tvPrice.setText(priceString);
     }
 }
