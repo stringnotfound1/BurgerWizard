@@ -7,4 +7,7 @@
     <string name="ccn">Credit Card Number</string>
     <string name="telnr">Telephone Number</string>
     <string name="name">Name</string>
+    <string name="addmeat">Add meat</string>
+    <string name="addextra">Add extra</string>
+    <string name="addsauce">Add sauce</string>
 </resources>

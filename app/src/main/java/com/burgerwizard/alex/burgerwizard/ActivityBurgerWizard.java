@@ -4,20 +4,29 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.burgerwizard.alex.burgerwizard.CustomElements.CustomBreadBotSelector;
+import com.burgerwizard.alex.burgerwizard.CustomElements.CustomBreadTopSelector;
+import com.burgerwizard.alex.burgerwizard.CustomElements.CustomExtraSelector;
 import com.burgerwizard.alex.burgerwizard.CustomElements.CustomIngredientSelector;
+import com.burgerwizard.alex.burgerwizard.CustomElements.CustomMeatSelector;
+import com.burgerwizard.alex.burgerwizard.CustomElements.CustomSauceSelector;
 import com.burgerwizard.alex.burgerwizard.Functionality.Ingredient;
 import com.burgerwizard.alex.burgerwizard.Functionality.Static;
 import com.burgerwizard.alex.burgerwizard.Functionality.User;
+import com.jmedeisis.draglinearlayout.DragLinearLayout;
 
 import java.util.ArrayList;
 
 public class ActivityBurgerWizard extends AppCompatActivity {
 
-    private LinearLayout llIngredients;
+    private DragLinearLayout llIngredients;
     private User user;
     private ArrayList<CustomIngredientSelector> customIngredientSelectors;
 
@@ -30,79 +39,48 @@ public class ActivityBurgerWizard extends AppCompatActivity {
         Toast.makeText(this, "User: "+user.getName(),Toast.LENGTH_SHORT).show();
         llIngredients = findViewById(R.id.activity_burger_wizard_ll_ingredient_list);
 
+        TextView tvAddExtra = findViewById(R.id.activity_burger_wizard_tv_extra);
+        TextView tvAddMeat = findViewById(R.id.activity_burger_wizard_tv_meat);
+        TextView tvAddSauce = findViewById(R.id.activity_burger_wizard_tv_sauce);
+
+        tvAddExtra.setOnClickListener((View view)-> {llIngredients.addView(new CustomExtraSelector(this), llIngredients.getChildCount()-1);
+                                                                                                                                    updateDragAndDrop();});
+        tvAddMeat.setOnClickListener((View view)-> {llIngredients.addView(new CustomMeatSelector(this), llIngredients.getChildCount()-1);
+                                                                                                                                    updateDragAndDrop();});
+        tvAddSauce.setOnClickListener((View view)-> {llIngredients.addView(new CustomSauceSelector(this), llIngredients.getChildCount()-1);
+                                                                                                                                    updateDragAndDrop();});
+
         initializeIngredients();
     }
 
     private void initializeIngredients(){
 
-        CustomIngredientSelector selectorBreadTop = new CustomIngredientSelector(this);
-        CustomIngredientSelector selectorMeat = new CustomIngredientSelector(this);
-        CustomIngredientSelector selectorSauce = new CustomIngredientSelector(this);
-        CustomIngredientSelector selectorExtra1 = new CustomIngredientSelector(this);
-        CustomIngredientSelector selectorExtra2 = new CustomIngredientSelector(this);
-        CustomIngredientSelector selectorBreadBot = new CustomIngredientSelector(this);
-
         customIngredientSelectors = new ArrayList<>();
-        customIngredientSelectors.add(selectorBreadTop);
-        customIngredientSelectors.add(selectorExtra1);
-        customIngredientSelectors.add(selectorSauce);
-        customIngredientSelectors.add(selectorMeat);
-        customIngredientSelectors.add(selectorExtra2);
-        customIngredientSelectors.add(selectorBreadBot);
 
-        /* bread start */
-        Ingredient brot_top = new Ingredient("Brot", R.drawable.brot_top, 1f);
-        Ingredient brot_bot = new Ingredient("Brot", R.drawable.brot_bot, 1f);
-
-        Ingredient brot_top_chi = new Ingredient("Brot Chia", R.drawable.brot_top_chi, 1f);
-        Ingredient brot_bot_chi = new Ingredient("Brot Chia", R.drawable.brot_bot_chi, 1f);
-
-        Ingredient brot_top_laugen = new Ingredient("Brot Lauge", R.drawable.brot_top_laugen, 1f);
-        Ingredient brot_bot_laugen = new Ingredient("Brot Lauge", R.drawable.brot_bot_laugen, 1f);
-        /* bread end */
-
-        /* meat start */
-        Ingredient rind = new Ingredient("Rind", R.drawable.fleisch, 1f);
-        Ingredient fisch = new Ingredient("Fisch", R.drawable.fisch, 1f);
-        Ingredient huhn = new Ingredient("Huhn", R.drawable.huhn, 1f);
-
-        /* extras start */
-        Ingredient bacon = new Ingredient("Bacon", R.drawable.bacon, 1f);
-        Ingredient kaese = new Ingredient("Käse", R.drawable.kaese, 1f);
-        Ingredient salat = new Ingredient("Salat", R.drawable.salat, 1f);
-        Ingredient rucola = new Ingredient("Rucola", R.drawable.rucola, 1f);
-        Ingredient tomate = new Ingredient("Tomate", R.drawable.tomate, 1f);
-        Ingredient gurke = new Ingredient("Gurke", R.drawable.gurke, 1f);
-        /* extras end */
-
-        /* sauce start*/
-        Ingredient bbq = new Ingredient("BBQ", R.drawable.bbq, 1f);
-        Ingredient kaesesauce = new Ingredient("Käsesauce", R.drawable.kaesesau, 1f);
-        Ingredient salsa = new Ingredient("Salsa", R.drawable.salsa, 1f);
-        Ingredient sauerrahm = new Ingredient("Sauerrahm", R.drawable.sauerrahm, 1f);
-        /* sauce end */
-
-        selectorBreadTop.setIngredients(new Ingredient[]{brot_top, brot_top_chi, brot_top_laugen});
-        selectorExtra1.setIngredients(new Ingredient[]{bacon, kaese, salat, rucola, tomate, gurke});
-        selectorSauce.setIngredients(new Ingredient[]{salsa, bbq, kaesesauce, sauerrahm});
-        selectorMeat.setIngredients(new Ingredient[]{rind, huhn, fisch});
-        selectorExtra2.setIngredients(new Ingredient[]{bacon, kaese, salat, rucola, tomate, gurke});
-        selectorBreadBot.setIngredients(new Ingredient[]{brot_bot, brot_bot_chi, brot_bot_laugen});
-
-        llIngredients.addView(selectorBreadTop);
-        llIngredients.addView(selectorExtra1);
-        llIngredients.addView(selectorSauce);
-        llIngredients.addView(selectorExtra2);
-        llIngredients.addView(selectorMeat);
-        llIngredients.addView(selectorBreadBot);
+        llIngredients.addView(new CustomBreadTopSelector(this));
+        llIngredients.addView(new CustomExtraSelector(this));
+        llIngredients.addView(new CustomSauceSelector(this));
+        llIngredients.addView(new CustomExtraSelector(this));
+        llIngredients.addView(new CustomMeatSelector(this));
+        llIngredients.addView(new CustomBreadBotSelector(this));
 
         findViewById(R.id.activity_burger_wizard_tv_next).setOnClickListener(this::checkOut);
 
+        updateDragAndDrop();
     }
 
     private void checkOut(View view){
 
         ArrayList<Ingredient> ingredients = new ArrayList<>();
+        customIngredientSelectors = new ArrayList<>();
+
+        for(int i = 0; i < llIngredients.getChildCount(); i++){
+            CustomIngredientSelector customIngredientSelector;
+            if(llIngredients.getChildAt(i) instanceof CustomIngredientSelector){
+                customIngredientSelector = (CustomIngredientSelector) llIngredients.getChildAt(i);
+                customIngredientSelectors.add(customIngredientSelector);
+            }
+        }
 
         for (CustomIngredientSelector selector : customIngredientSelectors){
             ingredients.add(selector.getCurrentIngredient());
@@ -114,4 +92,13 @@ public class ActivityBurgerWizard extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+    private void updateDragAndDrop(){
+
+        for(int i = 1; i < llIngredients.getChildCount()-1; i++){
+            View child = llIngredients.getChildAt(i);
+            llIngredients.setViewDraggable(child, child); // the child is its own drag handle
+        }
+    }
+
 }

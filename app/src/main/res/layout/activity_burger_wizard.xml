@@ -19,23 +19,45 @@
     <ScrollView
         android:id="@+id/activity_burger_wizard_sv"
         android:layout_width="match_parent"
+        android:paddingRight="@dimen/activity_vertical_margin"
         android:layout_height="match_parent"
         android:layout_below="@id/activity_burger_wizard_tv_title"
         android:layout_weight="1">
 
-        <LinearLayout
+        <com.jmedeisis.draglinearlayout.DragLinearLayout
             android:id="@+id/activity_burger_wizard_ll_ingredient_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical" />
 
     </ScrollView>
 
+
+    <LinearLayout
+        android:id="@+id/activity_burger_wizard_ll_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/activity_burger_wizard_sv"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/activity_burger_wizard_tv_extra"
+            style="@style/TextViewButtonIngredient"
+            android:text="@string/addextra" />
+        <TextView
+            android:id="@+id/activity_burger_wizard_tv_meat"
+            style="@style/TextViewButtonIngredient"
+            android:text="@string/addmeat" />
+        <TextView
+            android:id="@+id/activity_burger_wizard_tv_sauce"
+            style="@style/TextViewButtonIngredient"
+            android:text="@string/addsauce" />
+    </LinearLayout>
+
     <TextView
         android:id="@+id/activity_burger_wizard_tv_next"
         style="@style/TextViewButton"
-        android:layout_alignBottom="@+id/activity_burger_wizard_sv"
+        android:layout_alignBottom="@+id/activity_burger_wizard_ll_menu"
         android:text="@string/next" />
-
 
 </LinearLayout>
