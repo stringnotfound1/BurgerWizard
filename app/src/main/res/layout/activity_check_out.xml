@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.burgerwizard.alex.burgerwizard.ActivityCheckOut">
 
     <TextView
@@ -14,26 +15,59 @@
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:text="@string/checkout"
-        android:textSize="@dimen/activity_font_big" />
+        android:textSize="@dimen/activity_font_huge" />
 
-    <TextView
-        android:id="@+id/activity_check_out_tv_ingredients"
-        style="@style/TextViewCheckOut"
-        android:layout_width="wrap_content"
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
         android:layout_below="@+id/textView2"
-        android:layout_marginStart="14dp"
-        android:text="TextView"
-        android:textStyle="bold" />
+        android:layout_centerHorizontal="true"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/activity_check_out_tv_ingredients"
+                style="@style/TextViewCheckOut"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_weight="1"
+                android:text="TextView"
+                android:textAlignment="viewStart"
+                android:textStyle="bold"
+                android:textSize="@dimen/activity_font_medium" />
+
+            <TextView
+                android:id="@+id/activity_check_out_tv_prices"
+                style="@style/TextViewCheckOut"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_weight="1"
+                android:textAlignment="viewStart"
+                android:text="TextView"
+                android:textStyle="bold"
+                android:textSize="@dimen/activity_font_medium" />
+        </LinearLayout>
+
+
+    </ScrollView>
 
     <TextView
         android:id="@+id/activity_check_out_tv_price"
         style="@style/TextViewCheckOut"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/activity_check_out_tv_ingredients"
-        android:text="TextView"
-        android:textStyle="bold" />
-</RelativeLayout>
+        android:layout_marginStart="44dp"
+        android:text="Price"
+        android:textStyle="bold"
+        android:textSize="@dimen/activity_font_big" />
+
+</LinearLayout>

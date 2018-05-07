@@ -15,6 +15,7 @@ public class ActivityCheckOut extends AppCompatActivity {
 
     private TextView tvResult;
     private TextView tvPrice;
+    private TextView tvPrices;
     private User user;
     private ArrayList<Ingredient> ingredients;
 
@@ -25,17 +26,22 @@ public class ActivityCheckOut extends AppCompatActivity {
 
         tvResult = findViewById(R.id.activity_check_out_tv_ingredients);
         tvPrice = findViewById(R.id.activity_check_out_tv_price);
+        tvPrices = findViewById(R.id.activity_check_out_tv_prices);
 
         user = (User) getIntent().getSerializableExtra(Static.USER_EXTRA);
         ingredients = (ArrayList<Ingredient>) getIntent().getSerializableExtra(Static.INGREDIENT_LIST_EXTRA);
 
+
         String result = "";
+        String prices = "";
         float price = 0.0f;
         for (Ingredient ingredient : ingredients){
-            result = result +  String.format(Locale.GERMAN,ingredient.getIdentifier() + " " + "\t\t\t" + "%.2f" +"€" + "\n", ingredient.getPrice());
+            result = result +  String.format(Locale.GERMAN,ingredient.getIdentifier()+"\n");
+            prices = prices + String.format(Locale.GERMAN,"%.2f" +"€" + "\n", ingredient.getPrice());
             price = price + ingredient.getPrice();
         }
         tvResult.setText(result);
+        tvPrices.setText(prices);
         String priceString = String.format(Locale.GERMAN,"Preis: " + "\t\t" + "%.2f" + "€", price);
         tvPrice.setText(priceString);
     }
