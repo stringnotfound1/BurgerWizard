@@ -1,13 +1,9 @@
 package com.burgerwizard.alex.burgerwizard;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.MotionEvent;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +20,9 @@ import com.jmedeisis.draglinearlayout.DragLinearLayout;
 
 import java.util.ArrayList;
 
+/**
+ * The Burgerwizard
+ */
 public class ActivityBurgerWizard extends AppCompatActivity {
 
     private DragLinearLayout llIngredients;
@@ -36,24 +35,33 @@ public class ActivityBurgerWizard extends AppCompatActivity {
         setContentView(R.layout.activity_burger_wizard);
 
         user = (User) getIntent().getSerializableExtra(Static.USER_EXTRA);
-        Toast.makeText(this, "User: "+user.getName(),Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "User: " + user.getName(), Toast.LENGTH_SHORT).show();
         llIngredients = findViewById(R.id.activity_burger_wizard_ll_ingredient_list);
 
         TextView tvAddExtra = findViewById(R.id.activity_burger_wizard_tv_extra);
         TextView tvAddMeat = findViewById(R.id.activity_burger_wizard_tv_meat);
         TextView tvAddSauce = findViewById(R.id.activity_burger_wizard_tv_sauce);
 
-        tvAddExtra.setOnClickListener((View view)-> {llIngredients.addView(new CustomExtraSelector(this), llIngredients.getChildCount()-1);
-                                                                                                                                    updateDragAndDrop();});
-        tvAddMeat.setOnClickListener((View view)-> {llIngredients.addView(new CustomMeatSelector(this), llIngredients.getChildCount()-1);
-                                                                                                                                    updateDragAndDrop();});
-        tvAddSauce.setOnClickListener((View view)-> {llIngredients.addView(new CustomSauceSelector(this), llIngredients.getChildCount()-1);
-                                                                                                                                    updateDragAndDrop();});
+        tvAddExtra.setOnClickListener((View view) -> {
+            llIngredients.addView(new CustomExtraSelector(this), llIngredients.getChildCount() - 1);
+            updateDragAndDrop();
+        });
+        tvAddMeat.setOnClickListener((View view) -> {
+            llIngredients.addView(new CustomMeatSelector(this), llIngredients.getChildCount() - 1);
+            updateDragAndDrop();
+        });
+        tvAddSauce.setOnClickListener((View view) -> {
+            llIngredients.addView(new CustomSauceSelector(this), llIngredients.getChildCount() - 1);
+            updateDragAndDrop();
+        });
 
         initializeIngredients();
     }
 
-    private void initializeIngredients(){
+    /**
+     * adds a default list of ingredients to the burger: Top Bun, Extra, Sauce, Extra, Meat and Bottom Bun
+     */
+    private void initializeIngredients() {
 
         customIngredientSelectors = new ArrayList<>();
 
@@ -69,36 +77,44 @@ public class ActivityBurgerWizard extends AppCompatActivity {
         updateDragAndDrop();
     }
 
-    private void checkOut(View view){
+    /**
+     * Gathers all used ingredients and starts {@link com.burgerwizard.alex.burgerwizard.ActivityCheckOut} with an {@link com.burgerwizard.alex.burgerwizard.Functionality.Ingredient} list as extra
+     *
+     * @param view only used due to lambda usage
+     */
+    private void checkOut(View view) {
 
         ArrayList<Ingredient> ingredients = new ArrayList<>();
         customIngredientSelectors = new ArrayList<>();
 
-        for(int i = 0; i < llIngredients.getChildCount(); i++){
+        for (int i = 0; i < llIngredients.getChildCount(); i++) {
             CustomIngredientSelector customIngredientSelector;
-            if(llIngredients.getChildAt(i) instanceof CustomIngredientSelector){
+            if (llIngredients.getChildAt(i) instanceof CustomIngredientSelector) {
                 customIngredientSelector = (CustomIngredientSelector) llIngredients.getChildAt(i);
                 customIngredientSelectors.add(customIngredientSelector);
             }
         }
 
-        for (CustomIngredientSelector selector : customIngredientSelectors){
+        for (CustomIngredientSelector selector : customIngredientSelectors) {
             ingredients.add(selector.getCurrentIngredient());
         }
 
         Intent intent = new Intent(this, ActivityCheckOut.class);
         intent.putExtra(Static.USER_EXTRA, user);
-        intent.putExtra(Static.INGREDIENT_LIST_EXTRA,ingredients);
+        intent.putExtra(Static.INGREDIENT_LIST_EXTRA, ingredients);
         startActivity(intent);
 
     }
 
-    private void updateDragAndDrop(){
+    /**
+     * Needs to be called after adding a new view to the DragLinearLayout, see https://github.com/justasm/DragLinearLayout "Enabling drag & swap for all child views"
+     */
+    private void updateDragAndDrop() {
 
-        for(int i = 1; i < llIngredients.getChildCount()-1; i++){
+        // https://github.com/justasm/DragLinearLayout siehe "Enabling drag & swap for all child views"
+        for (int i = 1; i < llIngredients.getChildCount() - 1; i++) {
             View child = llIngredients.getChildAt(i);
             llIngredients.setViewDraggable(child, child); // the child is its own drag handle
         }
     }
-
 }
